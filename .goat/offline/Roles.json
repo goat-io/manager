@@ -1,0 +1,1 @@
+{"administrator":{"_id":"5c7024bb3a36930018f4f461","default":false,"admin":true,"title":"Administrator"},"authenticated":{"_id":"5c7024bb3a36930018f4f462","default":false,"admin":false,"title":"Authenticated"},"anonymous":{"_id":"5c7024bb3a36930018f4f463","default":true,"admin":false,"title":"Anonymous"},"fastUpdated":1558104578}
