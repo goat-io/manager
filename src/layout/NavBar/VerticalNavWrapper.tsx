@@ -30,6 +30,7 @@ const Nav = observer(() => {
   useEffect(() => {
     fetchResources();
   }, []);
+
   const elements: NavContainer[] = [
     {
       icon: "pe-7s-share",
@@ -61,7 +62,7 @@ const Nav = observer(() => {
         iconNamePrefix=""
         classNameStateIcon="pe-7s-angle-down"
       />
-      {elements[0].content.length > 1 && (
+      {elements[0].content.length > 0 && (
         <MetisMenu
           content={elements}
           activeLinkFromLocation

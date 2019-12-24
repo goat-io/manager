@@ -20,6 +20,26 @@ export default interface FormBuilderTypes {
   _id: string | undefined;
 }
 
+// String to Form
+const formGetter = (form: any) => {
+  let editForm = JSON.parse(JSON.stringify(form));
+
+  if (editForm.components) {
+    editForm.components = JSON.parse(editForm.components);
+  }
+  return editForm;
+};
+
+// Form to String
+const formSetter = (form: any) => {
+  let editForm = JSON.parse(JSON.stringify(form));
+
+  if (editForm.components) {
+    editForm.components = JSON.stringify(editForm.components);
+  }
+  return editForm;
+};
+
 export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
   const { setFormState, resource } = useFromStores();
   const [form, setForm] = useState(defaultForm);
@@ -35,7 +55,6 @@ export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
       const formSchema = await Form.find({ _id });
       setPlugin(formSchema.path);
       setForm(formSchema);
-      setFormState(formSchema);
     };
 
     getForm(_id);
@@ -50,8 +69,7 @@ export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
       newSchema.name = resource.name;
       newSchema.type = resource.type;
     }
-
-    setFormState(newSchema);
+    setFormState(formSetter(newSchema));
   };
 
   if (!resource) {
@@ -59,7 +77,7 @@ export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
     return null;
   }
 
-  let editForm = JSON.parse(JSON.stringify(form));
+  let editForm = formGetter(form);
 
   return (
     <Fragment>
