@@ -46,10 +46,12 @@ const SwaggerAPI = ({ path, openApiUrl }: SwaggerApiTypes) => {
       newSpec.components.requestBodies = {
         [path]: newSpec.components.requestBodies[path]
       };
-       */
+      
       newSpec.components.schemas = {
         [path]: newSpec.components.schemas[path]
       };
+
+       */
 
       setSpec(newSpec);
     };

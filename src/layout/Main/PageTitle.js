@@ -24,7 +24,7 @@ class PageTitle extends Component {
             >
               <i className={icon} />
             </div>
-            <div>
+            <div className="page-title">
               {heading}
               <div
                 className={cx("page-title-subheading", {

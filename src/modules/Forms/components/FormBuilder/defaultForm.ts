@@ -9,7 +9,7 @@ export const defaultForm: ResourceType = {
   display: "form",
   machineName: "",
   action: "",
-  tags: [""],
+  tags: [],
   deleted: undefined,
   access: [],
   submissionAccess: [],

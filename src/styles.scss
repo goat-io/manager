@@ -4,74 +4,175 @@
 // $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 @import "~formiojs/dist/formio.full.css";
+@import "./assets/goatStyle/card.scss";
+@import "./assets/goatStyle/formbuilder.scss";
 
-.formbuilder {
-  font-size: larger;
+.bg-goat {
+  background: #212428 !important;
 }
 
-.formbuilder .formcomponent {
-  display: flex;
-  height: 3rem;
-  margin-top: 0.6rem;
-  margin-bottom: 0.8rem;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  line-height: 3rem;
-  box-shadow: rgba(104, 118, 145, 0.05) 1px 1px 1px;
-  cursor: pointer;
-  width: 100% !important;
-  padding: 0px 1rem;
-  border-radius: 0.25rem;
+.app-header__content {
+  background: white !important;
+}
+
+.app-page-title {
+  background: white !important;
+}
+
+.app-sidebar.sidebar-text-light
+  .metismenu
+  .metismenu-container
+  .metismenu-link {
+  color: white;
+}
+
+.app-sidebar.sidebar-text-light .app-sidebar__heading {
+  color: white;
+}
+
+.app-sidebar.sidebar-text-light
+  .metismenu
+  .metismenu-container.metismenu-container.visible
+  .metismenu-item
+  > .metismenu-link {
+  color: white;
+}
+
+.metismenu-icon {
+  color: #00abdb;
+}
+
+.app-sidebar.sidebar-text-light
+  .metismenu
+  .metismenu-container.metismenu-container.visible
+  .metismenu-item
+  > .metismenu-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  line-height: 1.5;
+}
+
+.form-control {
+  height: calc(1.5em + 0.75rem + 2px);
+  font-weight: 400;
+  color: #495057;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-color: #e2e8f0;
   border-width: 1px;
-  border-style: solid;
-  border-color: rgb(227, 233, 243);
-  border-image: initial;
-  background: rgb(255, 255, 255);
-  color: #373a3ccf;
-}
-
-.formbuilder .formcomponent.btn-primary:active {
-  color: #fff;
-  background-color: #6610f2;
-  border-color: #6610f2;
-}
-
-.formbuilder .form-builder-group-header .mb-0 {
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
   width: 100%;
 }
 
-.formbuilder .formcomponents .formcomponent {
-  padding: 5px 15px 5px 15px;
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 0.875rem;
+  color: #4a5568;
 }
 
-.formbuilder .formcomponent.gu-transit {
-  color: #fff;
-  background-color: #6610f2;
-  border-color: #6610f2;
-  opacity: 0.6;
+.bg-sunny-morning {
+  background-image: linear-gradient(
+    120deg,
+    #00abdb 0%,
+    #00abdb 100%
+  ) !important;
+}
+.page-title {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: #4a5568;
+  font-weight: 500;
 }
 
-.formio-dialog .btn-secondary {
-  color: #fff;
-  background-color: #d5dae0;
-  border-color: #d5dae0;
+.app-theme-white.app-container {
+  background: #edf2f7;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(237, 242, 247);
 }
-/*
-.formbuilder .component-btn-group .component-settings-button {
-  padding: 2px 2px 2px 2px;
-  font-size: 14px;
-  line-height: 1.5em;
-  border-radius: 0;
-  width: 25px;
-  height: 25px;
-}
-*/
 
-.formbuilder .formio-form {
-  border-style: dashed;
-  border-color: #1716162b;
-  border-width: 1.6px;
-  padding: 20px 20px 20px 20px;
+.app-header.header-text-light .search-wrapper.active .input-holder {
+  background: #edf2f7;
+}
+.search-wrapper .search-input {
+  color: #2d3748 !important;
+}
+
+.app-header.header-text-light .search-wrapper .close::before,
+.app-header.header-text-light .search-wrapper .close::after,
+.app-header.header-text-light
+  .search-wrapper
+  .input-holder
+  .search-icon
+  span::before {
+  background: #718096;
+}
+
+.app-header.header-text-light
+  .search-wrapper
+  .input-holder
+  .search-icon
+  span::after {
+  border-color: #718096;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 15rem;
+  padding: 0.65rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 0.88rem;
+  color: #495057;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.nav .badge {
+  margin-left: 8px;
+  float: right;
 }

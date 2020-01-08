@@ -7969,8 +7969,9 @@ button,
   align-items: center;
   transition: width .2s; }
   .app-header__logo .logo-src {
-    height: 23px;
-    width: 97px;
+    height: 45px;
+    width: 120px;
+    margin-left: 30px;
     background: url("../assets/utils/images/logo-inverse.png"); }
 
 .app-header__menu,
@@ -8051,7 +8052,8 @@ button,
 .app-header.header-text-light .search-wrapper .input-holder .search-icon span::before {
   background: rgba(255, 255, 255, 0.8); }
 .app-header.header-text-light .app-header__logo .logo-src {
-  background: url("../assets/utils/images/logo.png"); }
+  background: url("../assets/utils/images/logo.png");
+  background-size: cover;}
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner,
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner::before,
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner::after {

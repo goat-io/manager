@@ -55,6 +55,7 @@ export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
       const formSchema = await Form.find({ _id });
       setPlugin(formSchema.path);
       setForm(formSchema);
+      setFormState(formSchema);
     };
 
     getForm(_id);

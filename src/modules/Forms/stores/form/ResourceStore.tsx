@@ -41,7 +41,9 @@ export const ResourceStore = types
             return value === null ? undefined : value;
           })
         );
-        self.editingResource = yield Form.update(resource);
+        /*const updated =*/ yield Form.update(resource);
+        // console.log(updated);
+        // self.editingResource = updated;
       } catch (error) {
         console.error("Failed to save", error);
       }

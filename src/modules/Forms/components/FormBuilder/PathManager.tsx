@@ -83,7 +83,7 @@ export const PathManager = observer(() => {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="name">Name</Label>
+                    <Label for="name">(Class) Name</Label>
                     <Input
                       type="text"
                       name="name"

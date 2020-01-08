@@ -8,7 +8,8 @@ import SwaggerAPI from "./components/Swagger";
 import { observer, useObserver } from "mobx-react";
 import { FormBuilder } from "./components/FormBuilder/FormBuilder";
 import { useResourceStore } from "./stores/form/useResourceStore";
-
+import { FormTypes } from "./components/FormTypes";
+import { Form } from "./components/Form";
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
   return useObserver(() => ({
@@ -27,6 +28,14 @@ const ResourceBuilder = observer(() => {
     {
       title: "Form",
       content: <FormBuilder _id={_id} />
+    },
+    {
+      title: "Use",
+      content: <Form />
+    },
+    {
+      title: "Types",
+      content: <FormTypes />
     },
     {
       title: "Access",
