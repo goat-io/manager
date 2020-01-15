@@ -176,3 +176,60 @@ label {
   margin-left: 8px;
   float: right;
 }
+
+button {
+  outline: none !important;
+  border: none;
+}
+
+.btn-success {
+  color: #fff;
+  background: #0e76f4 !important;
+  border-color: #0e76f4 !important;
+  outline: none;
+}
+
+.btn-danger {
+  color: #ff444e !important;
+  background: transparent;
+  border-color: #ff444e;
+  outline: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #0e76f4;
+  border-color: #0e76f4;
+  background: #0e76f4;
+}
+
+.card-header > .nav .nav-link::before {
+  background: #0e76f4;
+}
+
+.card-header > .nav .nav-link {
+  color: #495057;
+}
+
+.formbuilder .alert-info {
+  color: #718096;
+  font-weight: 400;
+  background-color: white;
+  background: white;
+  border-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.formbuilder .card-header > .nav .nav-link.active {
+  color: #495057;
+  background: transparent;
+  border: transparent;
+}
+
+.btn-danger:hover {
+  color: white !important;
+  background-color: #d90030;
+  border-color: #cc002e;
+}

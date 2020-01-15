@@ -27,8 +27,8 @@
 
 .formbuilder .formcomponent.btn-primary:active {
   color: #fff;
-  background-color: #6610f2;
-  border-color: #6610f2;
+  background-color: #0E76F4;
+  border-color: #0E76F4;
 }
 
 .formbuilder .form-builder-group-header .mb-0 {
@@ -41,8 +41,8 @@
 
 .formbuilder .formcomponent.gu-transit {
   color: #fff;
-  background-color: #6610f2;
-  border-color: #6610f2;
+  background-color: #48a0f8;
+  border-color: #48a0f8;
   opacity: 0.6;
 }
 
@@ -76,3 +76,52 @@
 .formioForm {
   width: 100%;
 }
+
+.radio label,
+.radio-inline label,
+.checkbox-inline label,
+.checkbox label {
+  font-weight: 400 !important;
+  font-size: small !important;
+}
+
+input[type="radio"] {
+  display: none;
+  margin: 10px;
+}
+
+table input[type="radio"] {
+  display: block;
+  margin: 10px;
+}
+
+/*
+.noCheckboxLabels table input[type="checkbox"] {
+  display: none;
+  margin: 10px;
+}
+
+input[type="radio"] + span,
+input[type="checkbox"] + span {
+  padding: 6px 12px;
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+  min-width: 230px;
+  max-width: 230px;
+  min-height: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-weight: 400;
+  font-size: 1.15em;
+  margin-bottom: 10px;
+}
+
+input[type="radio"]:checked + span,
+input[type="checkbox"]:checked + span {
+  background-color: #0E76F4;
+  color: white;
+  font-weight: 600;
+}
+*/
