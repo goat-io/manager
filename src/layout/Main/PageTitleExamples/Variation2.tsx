@@ -46,7 +46,7 @@ const TitleComponent2 = () => {
     const toastId = toast("Restarting server...", {
       transition: Slide,
       closeButton: true,
-      autoClose: 6000,
+      autoClose: 15000,
       position: "bottom-center",
       type: "success",
       onClose: async () => {
@@ -63,7 +63,7 @@ const TitleComponent2 = () => {
     const toastId = toast("Restarting server...", {
       transition: Slide,
       closeButton: true,
-      autoClose: 6000,
+      autoClose: 15000,
       position: "bottom-center",
       type: "success",
       onClose: async () => {

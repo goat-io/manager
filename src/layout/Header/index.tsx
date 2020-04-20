@@ -48,7 +48,7 @@ const Header = observer(() => {
             <SearchBox />
           </div>
           <div className="app-header-right">
-            <UserBox />
+            {/*<UserBox />*/}
           </div>
         </div>
       </ReactCSSTransitionGroup>

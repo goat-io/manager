@@ -1,4 +1,4 @@
-import { Form } from "@goatlab/goatjs";
+import { Form } from "../../../../api/Form";
 import { useObserver, observer } from "mobx-react";
 import { FormBuilder as FormioBuilder } from "react-formio";
 import React, { Fragment, useEffect, useState } from "react";
@@ -52,7 +52,8 @@ export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
     }
 
     const getForm = async (_id: string) => {
-      const formSchema = await Form.find({ _id });
+      const formSchema: any = await Form.remote().findById(_id);
+
       setPlugin(formSchema.path);
       setForm(formSchema);
       setFormState(formSchema);

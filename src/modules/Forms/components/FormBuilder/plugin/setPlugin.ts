@@ -1,20 +1,23 @@
-import { Form, Submission } from "@goatlab/goatjs";
+import { Submission } from "../../../../../api/Submission";
+import { Form } from "../../../../../api/Form";
 import { loopbackGetPlugin } from "./requestPlugin";
 import Formio from "formiojs/Formio";
 
 export const setPlugin = async (path: string | undefined) => {
-  let localForms = await Form.local().get();
+  let localForms = await Form.remote().all();
+  console.log("localForms", localForms);
   localForms = localForms.reduce((r: any, form: any) => {
-    r[form.data._id] = form.data.path;
+    r[form._id] = form.path;
     return r;
   }, {});
   const plugin = loopbackGetPlugin(
     localForms,
     Submission,
     {},
-    "http://127.0.0.1:3000/api",
-    "http://127.0.0.1:3000/api"
+    String(process.env.REACT_APP_FLUENT_BASE_URL),
+    String(process.env.REACT_APP_FLUENT_BASE_URL)
   );
-  Formio.setBaseUrl("http://127.0.0.1:3000/api");
+
+  Formio.setBaseUrl(String(process.env.REACT_APP_FLUENT_BASE_URL));
   Formio.registerPlugin(plugin, `moveCallsToLoopback_${path}`);
 };

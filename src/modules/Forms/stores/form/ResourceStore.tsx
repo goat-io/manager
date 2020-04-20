@@ -1,6 +1,6 @@
 import { types, flow, getSnapshot } from "mobx-state-tree";
 import { Resource, ResourceType } from "./types/Resource";
-import { Form } from "@goatlab/goatjs";
+import { Form } from "../../../../api/Form";
 
 export const ResourceStore = types
   .model("ResourceStore", {
@@ -28,7 +28,7 @@ export const ResourceStore = types
     },
     fetchResources: flow(function* fetchProjects() {
       try {
-        self.resources = yield Form.get();
+        self.resources = yield Form.remote().all();
       } catch (error) {
         console.error("Failed to fetch resources", error);
       }
@@ -41,7 +41,7 @@ export const ResourceStore = types
             return value === null ? undefined : value;
           })
         );
-        /*const updated =*/ yield Form.update(resource);
+        /*const updated =*/ yield Form.remote().update(resource);
         // console.log(updated);
         // self.editingResource = updated;
       } catch (error) {
@@ -59,7 +59,7 @@ export const ResourceStore = types
         delete resource._id;
         delete resource.created;
         delete resource.modified;
-        self.editingResource = yield Form.insert(resource);
+        self.editingResource = yield Form.remote().insert(resource);
       } catch (error) {
         console.error("Failed to save", error);
       }
@@ -68,7 +68,7 @@ export const ResourceStore = types
       try {
         const fullStore = getSnapshot(self);
         const resource = JSON.parse(JSON.stringify(fullStore.editingResource));
-        yield Form.delete(resource._id);
+        yield Form.remote().removeById(resource._id);
       } catch (error) {
         console.error("Failed to delete", error);
       }
