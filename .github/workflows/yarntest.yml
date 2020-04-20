@@ -24,6 +24,6 @@ jobs:
         env:
           CI: true
       - name: E2E on Chrome
-      - uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v1
         with:
           browser: chrome
