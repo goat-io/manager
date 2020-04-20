@@ -20,7 +20,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
-          group: "Running tests"
           start: yarn start
           wait-on: http://localhost:3000
         env:
