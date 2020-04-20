@@ -20,6 +20,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
+          record: false
           parallel: true
           group: "Running tests"
           start: yarn start
