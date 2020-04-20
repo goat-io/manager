@@ -3,7 +3,7 @@ import cx from "classnames";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import HeaderLogo from "../Logo";
 import SearchBox from "./Components/SearchBox";
-import UserBox from "./Components/UserBox";
+// import UserBox from "./Components/UserBox";
 
 import { useThemeStore } from "../../modules/UI/stores/theme/useThemeStore";
 import { observer, useObserver } from "mobx-react";
@@ -47,9 +47,7 @@ const Header = observer(() => {
           <div className="app-header-left">
             <SearchBox />
           </div>
-          <div className="app-header-right">
-            {/*<UserBox />*/}
-          </div>
+          <div className="app-header-right">{/*<UserBox />*/}</div>
         </div>
       </ReactCSSTransitionGroup>
     </>

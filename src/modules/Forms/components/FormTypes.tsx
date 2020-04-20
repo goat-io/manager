@@ -50,6 +50,7 @@ export const FormTypes = observer(() => {
       }
     };
     parseForm();
+    // eslint-disable-next-line
   }, [resource.path]);
 
   if (!types) {

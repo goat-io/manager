@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Col, Row, Card, CardBody, CardTitle } from "reactstrap";
+import { Row, Card, CardBody, CardTitle } from "reactstrap";
 import { useResourceStore } from "../stores/form/useResourceStore";
 import { useObserver, observer } from "mobx-react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
