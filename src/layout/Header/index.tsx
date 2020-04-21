@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import HeaderLogo from "../Logo";
-import SearchBox from "./Components/SearchBox";
+import { SearchBox } from "./Components/SearchBox";
 // import UserBox from "./Components/UserBox";
 
 import { useThemeStore } from "../../modules/UI/stores/theme/useThemeStore";

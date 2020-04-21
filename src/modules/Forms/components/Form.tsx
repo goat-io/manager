@@ -4,6 +4,7 @@ import { useResourceStore } from "../stores/form/useResourceStore";
 import { useObserver, observer } from "mobx-react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { Form as FormioForm } from "react-formio";
+import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
@@ -12,21 +13,12 @@ const useFromStores = () => {
   }));
 };
 
-// String to Form
-const formGetter = (form: any) => {
-  let editForm = JSON.parse(JSON.stringify(form));
-
-  if (editForm.components) {
-    editForm.components = JSON.parse(editForm.components);
-  }
-  return editForm;
-};
-
 export const Form = observer(() => {
   const { resource } = useFromStores();
-  const Form = formGetter(resource);
-  console.log("Form", Form);
-
+  if (!resource) {
+    return <></>;
+  }
+  const Form = Formio.getter(resource);
   return (
     <Fragment>
       <ReactCSSTransitionGroup

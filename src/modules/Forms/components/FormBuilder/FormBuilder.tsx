@@ -1,12 +1,12 @@
-import { Form } from "../../../../api/Form";
 import { useObserver, observer } from "mobx-react";
 import { FormBuilder as FormioBuilder } from "react-formio";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { PathManager } from "./PathManager";
-import { defaultForm } from "./defaultForm";
-import { setPlugin } from "./plugin/setPlugin";
+
 import { ResourceType } from "../../stores/form/types/Resource";
 import { useResourceStore } from "../../stores/form/useResourceStore";
+import { FormioForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioForm";
+import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
@@ -17,50 +17,14 @@ const useFromStores = () => {
 };
 
 export default interface FormBuilderTypes {
-  _id: string | undefined;
+  form: FormioForm;
 }
 
-// String to Form
-const formGetter = (form: any) => {
-  let editForm = JSON.parse(JSON.stringify(form));
-
-  if (editForm.components) {
-    editForm.components = JSON.parse(editForm.components);
+export const FormBuilder = observer(({ form }: FormBuilderTypes) => {
+  if (!form) {
+    return <></>;
   }
-  return editForm;
-};
-
-// Form to String
-const formSetter = (form: any) => {
-  let editForm = JSON.parse(JSON.stringify(form));
-
-  if (editForm.components) {
-    editForm.components = JSON.stringify(editForm.components);
-  }
-  return editForm;
-};
-
-export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
   const { setFormState, resource } = useFromStores();
-  const [form, setForm] = useState(defaultForm);
-
-  useEffect(() => {
-    if (!_id) {
-      setFormState(defaultForm);
-      setForm(defaultForm);
-      return;
-    }
-
-    const getForm = async (_id: string) => {
-      const formSchema: any = await Form.remote().findById(_id);
-
-      setPlugin(formSchema.path);
-      setForm(formSchema);
-      setFormState(formSchema);
-    };
-
-    getForm(_id);
-  }, [_id, setFormState, setForm]);
 
   const updateFormState = (schema: ResourceType) => {
     const newSchema = JSON.parse(JSON.stringify(schema));
@@ -71,15 +35,10 @@ export const FormBuilder = observer(({ _id }: FormBuilderTypes) => {
       newSchema.name = resource.name;
       newSchema.type = resource.type;
     }
-    setFormState(formSetter(newSchema));
+    setFormState(Formio.setter(newSchema));
   };
 
-  if (!resource) {
-    setFormState(defaultForm);
-    return null;
-  }
-
-  let editForm = formGetter(form);
+  const editForm = JSON.parse(JSON.stringify(form));
 
   return (
     <Fragment>

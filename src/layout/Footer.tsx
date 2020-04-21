@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React, { Fragment } from "react";
 
-class AppFooter extends React.Component {
+export class Footer extends React.Component {
   render() {
     return (
       <Fragment>
@@ -45,4 +45,4 @@ class AppFooter extends React.Component {
   }
 }
 
-export default AppFooter;
+export default Footer;

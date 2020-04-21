@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import AppHeader from "../../layout/Header";
 import AppSidebar from "../../layout/SideBar";
 import PageTitle from "../../layout/Main/PageTitle";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Tabs from "react-responsive-tabs";
 import SwaggerAPI from "./components/Swagger";
 import { observer, useObserver } from "mobx-react";
@@ -10,30 +10,45 @@ import { FormBuilder } from "./components/FormBuilder/FormBuilder";
 import { useResourceStore } from "./stores/form/useResourceStore";
 import { FormTypes } from "./components/FormTypes";
 import { Form } from "./components/Form";
-
+import { Data } from "./components/Data";
+import { Form as FormAPI } from "../../api/Form";
+import { Footer } from "../../layout/Footer";
+import * as queryString from "query-string";
+import { defaultForm } from "./components/FormBuilder/defaultForm";
+import { setPlugin } from "./components/FormBuilder/plugin/setPlugin";
+import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
   return useObserver(() => ({
-    resource: resourceStore.editingResource
+    resource: resourceStore.editingResource,
+    setFormState: resourceStore.setEditingResource
   }));
 };
 
 const ResourceBuilder = observer(() => {
+  const history = useHistory();
   let { _id } = useParams();
-  const { resource } = useFromStores();
-
+  const { setFormState, resource } = useFromStores();
+  const defaultEditForm = Formio.getter(defaultForm);
+  const [form, setForm] = useState(defaultEditForm);
   const path = (resource && resource.path) || "";
   const title = (resource && resource.title) || "";
+  const { tab } = queryString.parse(history.location.search);
+  const [selectedTab, setSelectedTab] = useState(0);
 
   const tabsContent = [
     {
       title: "Form",
-      content: <FormBuilder _id={_id} />
+      content: <FormBuilder form={form} />
     },
     {
       title: "Use",
       content: <Form />
+    },
+    {
+      title: "Data",
+      content: <Data />
     },
     {
       title: "Types",
@@ -45,12 +60,53 @@ const ResourceBuilder = observer(() => {
     }
   ];
 
+  useEffect(() => {
+    if (!_id) {
+      setFormState(defaultForm);
+      setForm(defaultEditForm);
+      return;
+    }
+
+    const getForm = async (_id: string) => {
+      const formSchema: any = await FormAPI.remote().findById(_id);
+      setPlugin(formSchema.path);
+      setForm(Formio.getter(formSchema));
+      setFormState(formSchema);
+    };
+
+    getForm(_id);
+    // eslint-disable-next-line
+  }, [_id]);
+
+  useEffect(() => {
+    if (!tab) {
+      setSelectedTab(0);
+      return;
+    }
+    let selected = tabsContent.findIndex(t => t.title === tab);
+    setSelectedTab(selected);
+    // eslint-disable-next-line
+  }, [tab]);
+
   if (_id) {
     tabsContent.push({
       title: "API",
       content: <SwaggerAPI path={path} />
     });
   }
+
+  if (!resource) {
+    setFormState(defaultForm);
+    return null;
+  }
+
+  console.log("form", form);
+
+  const changeUrl = (tabNumber: number) => {
+    const tab = tabsContent[tabNumber];
+    history.push(`?tab=${tab.title}`);
+    setSelectedTab(tabNumber);
+  };
 
   function getTabs() {
     return tabsContent.map((tab, index) => ({
@@ -81,6 +137,8 @@ const ResourceBuilder = observer(() => {
                     transform={false}
                     showInkBar={true}
                     items={getTabs()}
+                    onChange={changeUrl}
+                    selectedTabKey={selectedTab}
                   />
                 </div>
               </div>
@@ -88,6 +146,7 @@ const ResourceBuilder = observer(() => {
           </div>
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 });

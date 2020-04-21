@@ -410,3 +410,100 @@ button.border-0.btn-pill.btn-wide.btn-transition.active.btn.btn-outline-primary 
   margin: 50px 0;
   display: none;
 }
+
+// Card
+
+.card-header,
+.card-footer {
+  background-color: white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table th,
+.table td {
+  vertical-align: baseline;
+}
+
+.search-wrapper.active .input-holder {
+  width: 290px;
+  border-radius: 50px;
+  background: #edf2f7;
+  transition: all 0.5s cubic-bezier(0, 0.105, 0.035, 1.57);
+}
+
+.search-wrapper .input-holder .search-icon {
+  background: #edf2f7;
+}
+
+.search-wrapper .input-holder .search-icon span::before {
+  background: #718096;
+}
+
+.search-wrapper .input-holder .search-icon span::after {
+  border: 2px solid #718096;
+}
+
+#heading-basic button,
+#heading-advanced button,
+#heading-layout button,
+#heading-data button,
+#heading-premium button {
+  text-transform: uppercase;
+  color: grey;
+  font-weight: bold;
+  font-size: 0.88rem;
+}
+.drag-copy,
+.component-settings-button-move {
+  cursor: grab !important;
+}
+
+.gu-transit .drag-copy {
+  cursor: grabbing !important;
+}
+
+.app-footer {
+  height: 60px;
+  margin-top: 60px;
+}
+
+.formio-component .table-bordered th,
+.formio-component .table-bordered td,
+.formio-component .table-bordered {
+}
+
+.formio-component tfoot {
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.formio-component thead {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.btn.btn-xxs.btn-default.component-settings-button.component-settings-button-move {
+  display: none;
+}
+
+.btn.btn-xxs.btn-default.component-settings-button.component-settings-button-edit-json {
+  display: none;
+}
+
+/*
+table {
+  counter-reset: rowNumber;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}
+*/

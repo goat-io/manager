@@ -5,7 +5,7 @@ import Formio from "formiojs/Formio";
 
 export const setPlugin = async (path: string | undefined) => {
   let localForms = await Form.remote().all();
-  console.log("localForms", localForms);
+
   localForms = localForms.reduce((r: any, form: any) => {
     r[form._id] = form.path;
     return r;
