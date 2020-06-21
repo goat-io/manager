@@ -11,6 +11,9 @@ const Charts = lazy(() => import("../../modules/UI/Charts"));
 const Forms = lazy(() => import("../../modules/UI/Forms"));
 const Tables = lazy(() => import("../../modules/UI/Tables"));
 const ResourceBuilder = lazy(() => import("../../modules/Forms"));
+const Authentication = lazy(() => import("../../modules/Auth/Auth"));
+const Environment = lazy(() => import("../../modules/Env/Environment"));
+const Databases = lazy(() => import("../../modules/Database/Database"));
 
 const AppMain = () => {
   return (
@@ -29,7 +32,55 @@ const AppMain = () => {
           </div>
         }
       >
-        <Route path="/forms/:_id*" component={ResourceBuilder} />
+        <Route path="/forms/:id*" component={ResourceBuilder} />
+      </Suspense>
+
+      {/* Authentication */}
+      <Suspense
+        fallback={
+          <div className="loader-container">
+            <div className="loader-container-inner">
+              <h6 className="mt-5">
+                Loading...
+                <small>Wait for the resource builder to load</small>
+              </h6>
+            </div>
+          </div>
+        }
+      >
+        <Route path="/authentication" component={Authentication} />
+      </Suspense>
+
+      {/* Databases */}
+      <Suspense
+        fallback={
+          <div className="loader-container">
+            <div className="loader-container-inner">
+              <h6 className="mt-5">
+                Loading...
+                <small>Wait for the resource builder to load</small>
+              </h6>
+            </div>
+          </div>
+        }
+      >
+        <Route path="/databases" component={Databases} />
+      </Suspense>
+
+      {/* Environment */}
+      <Suspense
+        fallback={
+          <div className="loader-container">
+            <div className="loader-container-inner">
+              <h6 className="mt-5">
+                Loading...
+                <small>Wait for the resource builder to load</small>
+              </h6>
+            </div>
+          </div>
+        }
+      >
+        <Route path="/environment" component={Environment} />
       </Suspense>
       {/* Components */}
 

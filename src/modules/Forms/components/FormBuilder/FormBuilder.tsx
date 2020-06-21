@@ -27,7 +27,7 @@ export const FormBuilder = observer(({ form }: FormBuilderTypes) => {
   const { setFormState, resource } = useFromStores();
 
   const updateFormState = (schema: ResourceType) => {
-    const newSchema = JSON.parse(JSON.stringify(schema));
+    const newSchema = JSON.parse(JSON.stringify(schema)) as FormioForm;
 
     if (resource) {
       newSchema.path = resource.path;
@@ -35,7 +35,10 @@ export const FormBuilder = observer(({ form }: FormBuilderTypes) => {
       newSchema.name = resource.name;
       newSchema.type = resource.type;
     }
-    setFormState(Formio.setter(newSchema));
+
+    const form = Formio.setter(newSchema) as ResourceType;
+
+    setFormState(form);
   };
 
   const editForm = JSON.parse(JSON.stringify(form));

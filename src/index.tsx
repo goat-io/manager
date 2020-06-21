@@ -1,12 +1,12 @@
 import React, { ComponentClass } from "react";
 import ReactDOM from "react-dom";
 import "./assets/base.css";
+import "mobx-react-lite/batchingForReactDom";
 import App from "./modules/Main";
 import * as serviceWorker from "./serviceWorker";
-import { config } from "./config/goat";
 import { HashRouter } from "react-router-dom";
 import "./styles.scss";
-config();
+
 const rootElement = document.getElementById("root");
 
 const renderApp = (Component: ComponentClass) => {

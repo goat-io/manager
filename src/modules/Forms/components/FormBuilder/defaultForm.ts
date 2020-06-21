@@ -1,7 +1,7 @@
 import { ResourceType } from "../../stores/form/types/Resource";
 
 export const defaultForm: ResourceType = {
-  _id: "",
+  id: "",
   title: "",
   name: "",
   path: "",

@@ -12,7 +12,7 @@ interface SwaggerApiTypes {
 const SwaggerAPI = ({ path, openApiUrl }: SwaggerApiTypes) => {
   const url =
     openApiUrl ||
-    `${String(process.env.REACT_APP_FLUENT_BASE_URL)}/explorer/openapi.json`;
+    `${String(process.env.REACT_APP_FLUENT_BASE_URL)}/explorer/json`;
 
   const [spec, setSpec] = useState({
     components: { requestBodies: {}, schemas: {} },

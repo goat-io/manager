@@ -18,7 +18,9 @@ export const Form = observer(() => {
   if (!resource) {
     return <></>;
   }
+
   const Form = Formio.getter(resource);
+
   return (
     <Fragment>
       <ReactCSSTransitionGroup

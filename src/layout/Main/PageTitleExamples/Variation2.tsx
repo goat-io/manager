@@ -9,7 +9,7 @@ import {
   NavItem,
   NavLink,
   Button,
-  UncontrolledTooltip
+  UncontrolledTooltip,
 } from "reactstrap";
 
 import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -28,16 +28,16 @@ const useFromStores = () => {
     update: resourceStore.updateResource,
     create: resourceStore.createResource,
     fetch: resourceStore.fetchResources,
-    del: resourceStore.deleteResource
+    del: resourceStore.deleteResource,
   }));
 };
 
 const TitleComponent2 = () => {
   const { update, create, fetch, del } = useFromStores();
-  let { _id } = useParams();
+  let { id } = useParams();
 
   const updateOrCreate = async () => {
-    if (_id) {
+    if (id) {
       await update();
     } else {
       await create();
@@ -51,12 +51,12 @@ const TitleComponent2 = () => {
       type: "success",
       onClose: async () => {
         await fetch();
-      }
+      },
     });
   };
 
   const deleteForm = async () => {
-    if (_id) {
+    if (id) {
       await del();
     }
 
@@ -68,7 +68,7 @@ const TitleComponent2 = () => {
       type: "success",
       onClose: async () => {
         await fetch();
-      }
+      },
     });
   };
 

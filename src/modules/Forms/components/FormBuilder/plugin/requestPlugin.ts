@@ -24,11 +24,11 @@ export const loopbackGetPlugin = (
 
     let { url } = request;
 
-    if (url.includes("form?type=resource&limit=4294967295&select=_id,title")) {
+    if (url.includes("form?type=resource&limit=4294967295&select=id,title")) {
       const result = await Submission({ path: "/forms" })
         .remote({ connectorName: "loopback" })
         .limit(99999)
-        .select("_id, title")
+        .select("id, title")
         .get();
       return result;
     }
@@ -41,10 +41,8 @@ export const loopbackGetPlugin = (
       let id = url.split("/").pop();
       const result = await Submission({ path: "forms" })
         .remote({ connectorName: "loopback" })
-        .where("_id", "=", id)
+        .where("id", "=", id)
         .first();
-
-      console.log("result", result);
 
       return result;
     }
@@ -100,7 +98,7 @@ export const loopbackGetPlugin = (
       ),
       filter,
       where,
-      searchString
+      searchString,
     };
 
     // Make the field searchable
@@ -134,7 +132,7 @@ export const loopbackGetPlugin = (
       } else {
         currentValue = currentValue[lbQueryUrl.formField];
         if (currentValue) {
-          lbQueryUrl.where = `{ _id: ${currentValue} }`;
+          lbQueryUrl.where = `{ id: ${currentValue} }`;
           lbQueryUrl.filter.where = lbQueryUrl.where;
         }
       }
@@ -154,5 +152,5 @@ export const loopbackGetPlugin = (
       .get();
 
     return result;
-  }
+  },
 });

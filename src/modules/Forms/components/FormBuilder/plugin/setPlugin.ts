@@ -1,18 +1,17 @@
-import { Submission } from "../../../../../api/Submission";
 import { Form } from "../../../../../api/Form";
 import { loopbackGetPlugin } from "./requestPlugin";
 import Formio from "formiojs/Formio";
 
-export const setPlugin = async (path: string | undefined) => {
-  let localForms = await Form.remote().all();
+export const setPlugin = async (path: string | undefined, model: any) => {
+  let localForms = await Form.all();
 
   localForms = localForms.reduce((r: any, form: any) => {
-    r[form._id] = form.path;
+    r[form.id] = form.path;
     return r;
   }, {});
   const plugin = loopbackGetPlugin(
     localForms,
-    Submission,
+    model,
     {},
     String(process.env.REACT_APP_FLUENT_BASE_URL),
     String(process.env.REACT_APP_FLUENT_BASE_URL)

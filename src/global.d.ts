@@ -5,3 +5,4 @@ declare module "formiojs/Formio";
 declare module "react-responsive-tabs";
 declare module "dotenv";
 declare module "query-string";
+declare module "react-inline-editing";
