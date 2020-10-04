@@ -1,26 +1,13 @@
 /*eslint-disable */
 import React, { Fragment } from "react";
-
-import {
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
-  UncontrolledTooltip,
-} from "reactstrap";
-
+import { Slide, toast } from "react-toastify";
 import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
 
+import { Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { toast, Slide } from "react-toastify";
-
-import { useResourceStore } from "../../../modules/Forms/stores/form/useResourceStore";
 import { useObserver } from "mobx-react";
 import { useParams } from "react-router-dom";
+import { useResourceStore } from "../../../modules/Forms/stores/form/useResourceStore";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
@@ -32,9 +19,12 @@ const useFromStores = () => {
   }));
 };
 
+interface urlParams {
+  id: string;
+}
 const TitleComponent2 = () => {
   const { update, create, fetch, del } = useFromStores();
-  let { id } = useParams();
+  let { id } = useParams<urlParams>();
 
   const updateOrCreate = async () => {
     if (id) {

@@ -10,7 +10,7 @@ import {
   Label,
   Input,
   Form,
-  CustomInput
+  CustomInput,
 } from "reactstrap";
 import { useResourceStore } from "../../stores/form/useResourceStore";
 import { useObserver, observer } from "mobx-react";
@@ -19,7 +19,7 @@ const useFromStores = () => {
   const { resourceStore } = useResourceStore();
   return useObserver(() => ({
     resource: resourceStore.editingResource,
-    setEditingResourceField: resourceStore.setEditingResourceField
+    setEditingResourceField: resourceStore.setEditingResourceField,
   }));
 };
 
@@ -29,7 +29,7 @@ export const PathManager = observer(() => {
     title: "",
     name: "",
     path: "",
-    display: ""
+    display: "",
   });
   const update = JSON.stringify(resource);
   useEffect(() => {
@@ -37,7 +37,7 @@ export const PathManager = observer(() => {
       title: (resource && resource.title) || "",
       name: (resource && resource.name) || "",
       path: (resource && resource.path) || "",
-      display: (resource && resource.display) || ""
+      display: (resource && resource.display) || "",
     });
   }, [update, resource]);
 
@@ -49,8 +49,8 @@ export const PathManager = observer(() => {
     setState({
       ...state,
       ...{
-        [name]: value
-      }
+        [name]: value,
+      },
     });
   };
   return (
@@ -122,6 +122,24 @@ export const PathManager = observer(() => {
                       <option value="">Select...</option>
                       <option value="form">Form</option>
                       <option value="wizard">Wizard</option>
+                    </CustomInput>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="display">Database connection</Label>
+                    <CustomInput
+                      type="select"
+                      id="display"
+                      name="display"
+                      value={state.display}
+                      onChange={handleOnChange}
+                    >
+                      <option value="">Select...</option>
+                      <option value="form">MAIN_DATABASE</option>
+                      <option value="wizard">SECOND_DATABASE</option>
                     </CustomInput>
                   </FormGroup>
                 </Col>

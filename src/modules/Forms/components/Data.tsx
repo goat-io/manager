@@ -1,14 +1,16 @@
+import { Card, Col, Row } from "reactstrap";
+
+import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
+import { FormioStringForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioStringForm";
 import React from "react";
-import { Row, Col, Card } from "reactstrap";
 import { SearchBox } from "../../../layout/Header/Components/SearchBox";
 import { useObserver } from "mobx-react";
 import { useResourceStore } from "../stores/form/useResourceStore";
-import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
   return useObserver(() => ({
-    resource: resourceStore.editingResource
+    resource: resourceStore.editingResource,
   }));
 };
 
@@ -17,7 +19,8 @@ export const Data = () => {
   if (!resource) {
     return <></>;
   }
-  const Form = Formio.getter(resource);
+
+  const Form = Formio.getter(resource as FormioStringForm);
   const columns = Formio.tableViewLabels(Form);
 
   return (
@@ -35,7 +38,7 @@ export const Data = () => {
               <thead>
                 <tr>
                   <th className="text-center">#</th>
-                  {columns.map(columnName => {
+                  {columns.map((columnName) => {
                     return (
                       <th className="text-center" key={columnName}>
                         {columnName}

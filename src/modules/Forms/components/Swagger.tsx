@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
+
+import React, { useEffect, useState } from "react";
+
+import SwaggerUI from "swagger-ui-react";
 import axios from "axios";
 import to from "await-to-js";
 
@@ -20,22 +22,22 @@ const SwaggerAPI = ({ path, openApiUrl }: SwaggerApiTypes) => {
     openapi: "",
     paths: {},
     servers: [],
-    tags: []
+    tags: [],
   });
 
   useEffect(() => {
     const getSpec = async () => {
       const [error, result] = await to(axios.get(url));
-      if (error) {
+      if (error || !result) {
         return;
       }
       let newSpec = {
-        ...JSON.parse(JSON.stringify(result.data))
+        ...JSON.parse(JSON.stringify(result.data)),
       };
 
       const apiPaths: any = {};
 
-      Object.keys(newSpec.paths).forEach(apiPath => {
+      Object.keys(newSpec.paths).forEach((apiPath) => {
         if (apiPath.includes(`${path}`)) {
           apiPaths[apiPath] = newSpec.paths[apiPath];
         }

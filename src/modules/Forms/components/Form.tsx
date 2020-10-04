@@ -1,10 +1,12 @@
+import { Card, CardBody, CardTitle, Row } from "reactstrap";
 import React, { Fragment } from "react";
-import { Row, Card, CardBody, CardTitle } from "reactstrap";
-import { useResourceStore } from "../stores/form/useResourceStore";
-import { useObserver, observer } from "mobx-react";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import { Form as FormioForm } from "react-formio";
+import { observer, useObserver } from "mobx-react";
+
 import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
+import { Form as FormioForm } from "react-formio";
+import { FormioStringForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioStringForm";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { useResourceStore } from "../stores/form/useResourceStore";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
@@ -19,7 +21,7 @@ export const Form = observer(() => {
     return <></>;
   }
 
-  const Form = Formio.getter(resource);
+  const Form = Formio.getter(resource as FormioStringForm);
 
   return (
     <Fragment>

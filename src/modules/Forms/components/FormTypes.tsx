@@ -1,50 +1,54 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Col, Row, Card, CardBody, CardTitle } from "reactstrap";
-import { useResourceStore } from "../stores/form/useResourceStore";
-import { useObserver, observer } from "mobx-react";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
-import { Id } from "@goatlab/fluent/dist/Helpers/Id";
-import {
-  parse,
-  SupportedFrameworks
-} from "@goatlab/fluent/dist/Helpers/Formio/parser/parse";
-import { FormioForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioForm";
+// import "ace-builds/src-noconflict/mode-typescript";
+// import "ace-builds/src-noconflict/theme-textmate";
+
+import { Card, CardBody, CardTitle, Col, Row } from "reactstrap";
 import { ListGroup, ListGroupItem } from "reactstrap";
+import React, { Fragment, useEffect, useState } from "react";
+import {
+  SupportedFrameworks,
+  parse,
+} from "@goatlab/fluent/dist/Helpers/Formio/parser/parse";
+import { observer, useObserver } from "mobx-react";
+
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-typescript";
-import "ace-builds/src-noconflict/theme-textmate";
+import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
+import { FormioForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioForm";
+import { FormioStringForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioStringForm";
+import { Id } from "@goatlab/fluent/dist/Helpers/Id";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { TemplateFileType } from "@goatlab/fluent/dist/Helpers/Formio/types/GoatParsedModel";
+import { useResourceStore } from "../stores/form/useResourceStore";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
   return useObserver(() => ({
     resource: resourceStore.editingResource,
-    resources: resourceStore.resources
+    resources: resourceStore.resources,
   }));
 };
 
 export const FormTypes = observer(() => {
   const { resource, resources } = useFromStores();
-  const [types, setTypes] = useState();
-  const [file, setFile] = useState();
+  const [types, setTypes] = useState<TemplateFileType[]>();
+  const [file, setFile] = useState<string>();
 
   if (!resource || !resources) {
     return <></>;
   }
-  const Form: FormioForm = Formio.getter(resource);
+  const Form: FormioForm = Formio.getter(resource as FormioStringForm);
 
   const selectTypeFile = (path: string) => {
     if (!types) {
       return;
     }
     const selectedFile = types.find((t: any) => t.path === path);
-    setFile(selectedFile.file);
+    setFile(selectedFile && selectedFile.file);
   };
 
   useEffect(() => {
     const parseForm = async () => {
       const parsedForms = await parse(Form, SupportedFrameworks.Loopback);
-      const form = parsedForms.find(p => p.model.path === Form.path);
+      const form = parsedForms.find((p) => p.model.path === Form.path);
       if (form) {
         setTypes(form && form.types.reverse());
       }

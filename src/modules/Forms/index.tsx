@@ -1,23 +1,26 @@
-import React, { Fragment, useEffect, useState, Component } from "react";
+import * as queryString from "query-string";
+
+import React, { Component, Fragment, useEffect, useState } from "react";
+import { observer, useObserver } from "mobx-react";
+import { useHistory, useParams } from "react-router-dom";
+
 import AppHeader from "../../layout/Header";
 import AppSidebar from "../../layout/SideBar";
-import PageTitle from "../../layout/Main/PageTitle";
-import { useParams, useHistory } from "react-router-dom";
-import Tabs from "react-responsive-tabs";
-import SwaggerAPI from "./components/Swagger";
-import { observer, useObserver } from "mobx-react";
-import { FormBuilder } from "./components/FormBuilder/FormBuilder";
-import { useResourceStore } from "./stores/form/useResourceStore";
-import { FormTypes } from "./components/FormTypes";
-import { Form } from "./components/Form";
 import { Data } from "./components/Data";
-import { Form as FormAPI } from "../../api/Form";
 import { Footer } from "../../layout/Footer";
-import * as queryString from "query-string";
-import { defaultForm } from "./components/FormBuilder/defaultForm";
-import { setPlugin } from "./components/FormBuilder/plugin/setPlugin";
+import { Form } from "./components/Form";
+import { Form as FormAPI } from "../../api/Form";
+import { FormBuilder } from "./components/FormBuilder/FormBuilder";
+import { FormTypes } from "./components/FormTypes";
 import { Formio } from "@goatlab/fluent/dist/Helpers/Formio";
 import { FormioForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioForm";
+import { FormioStringForm } from "@goatlab/fluent/dist/Helpers/Formio/types/FormioStringForm";
+import PageTitle from "../../layout/Main/PageTitle";
+import SwaggerAPI from "./components/Swagger";
+import Tabs from "react-responsive-tabs";
+import { defaultForm } from "./components/FormBuilder/defaultForm";
+import { setPlugin } from "./components/FormBuilder/plugin/setPlugin";
+import { useResourceStore } from "./stores/form/useResourceStore";
 
 const useFromStores = () => {
   const { resourceStore } = useResourceStore();
@@ -79,11 +82,14 @@ const getTabs = ({ path, id, form }: IgetTabs) => {
   }));
 };
 
+interface urlParams {
+  id: string;
+}
 const ResourceBuilder = observer(() => {
   const history = useHistory();
-  let { id } = useParams();
+  let { id } = useParams<urlParams>();
   const { setFormState, resource } = useFromStores();
-  const defaultEditForm = Formio.getter(defaultForm);
+  const defaultEditForm = Formio.getter(defaultForm as FormioStringForm);
   const [form, setForm] = useState(defaultEditForm);
   const path = (resource && resource.path) || "";
   const title = (resource && resource.title) || "";
