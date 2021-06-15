@@ -33,7 +33,7 @@
     "formik": "^2.1.7",
     "formiojs": "^4.12.0",
     "fs-extra": "9.0.1",
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^3.2.1",
     "globalize": "^1.6.0",
     "google-map-react": "^2.1.7",
     "hamburgers": "^1.1.3",
