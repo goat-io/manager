@@ -82,7 +82,7 @@
     "react-resize-detector": "^5.2.0",
     "react-responsive-tabs": "^4.1.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.0",
     "react-scroll": "^1.8.1",
     "react-scrollspy": "^3.4.3",
     "react-simple-maps": "^2.1.2",
