@@ -21,7 +21,7 @@
     "classnames": "^2.2.6",
     "create-react-class": "^15.6.3",
     "cross-env": "^7.0.2",
-    "cypress": "^5.3.0",
+    "cypress": "^6.6.0",
     "d3-scale": "^3.2.3",
     "date-arithmetic": "^4.1.0",
     "date-fns": "^2.16.1",
